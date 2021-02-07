@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+  },
+  "exclude": ["node_modules", "dist", "src/client", "**/*spec.ts"]
+}
