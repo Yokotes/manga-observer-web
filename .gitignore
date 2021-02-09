@@ -1,6 +1,10 @@
 # compiled output
-/dist
-/node_modules
+web/dist
+web/node_modules
+/nginx
+
+# Docker files
+docker-compose.yml
 
 # Logs
 logs

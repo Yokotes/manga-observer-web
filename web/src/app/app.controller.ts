@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Req, Request } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('*')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @Render('index')
-  getHello() {}
+  getPage(@Req() req: Request) {
+    const url = req.url;
+
+    return this.appService.getPage(url).trim();
+  }
 }
