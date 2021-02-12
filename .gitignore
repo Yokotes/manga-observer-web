@@ -1,7 +1,7 @@
 # compiled output
 web/dist
 web/node_modules
-/nginx
+/diagrams
 
 # Docker files
 docker-compose.yml

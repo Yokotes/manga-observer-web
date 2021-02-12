@@ -1,11 +1,21 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
+import MainNav from '../MainNav/MainNav';
+import MoreBtn from '../MoreBtn/MoreBtn';
+import { StyledHeader } from './Header.styles';
 
 const Header = () => {
   return (
-    <header>
-      <Link to="/test">Test</Link>
-    </header>
+    <StyledHeader>
+      {/* Logo */}
+      <Logo />
+
+      {/* Nav */}
+      <MainNav />
+
+      {/* MoreBtn */}
+      <MoreBtn />
+    </StyledHeader>
   );
 };
 
