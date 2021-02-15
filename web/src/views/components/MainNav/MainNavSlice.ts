@@ -6,8 +6,15 @@ const MainNavSlice = createSlice({
     items: [
       {
         id: 0,
+        path: '/user/notifications',
+        classes: 'far fa-bell',
+        title: '(0)',
+        isCurrent: false,
+      },
+      {
+        id: 1,
         path: '/manga',
-        classes: 'fas fa-book',
+        classes: 'far fa-list-alt',
         title: 'Manga',
         isCurrent: false,
       },

@@ -1,20 +1,16 @@
 import * as React from 'react';
-import Logo from '../Logo/Logo';
-import MainNav from '../MainNav/MainNav';
-import MoreBtn from '../MoreBtn/MoreBtn';
-import { StyledHeader } from './Header.styles';
+import AuthView from '../AuthView/AuthView';
+import Search from '../Search/Search';
+import StyledHeader from './Header.styles';
 
 const Header = () => {
   return (
     <StyledHeader>
-      {/* Logo */}
-      <Logo />
+      {/* Search form */}
+      <Search />
 
-      {/* Nav */}
-      <MainNav />
-
-      {/* MoreBtn */}
-      <MoreBtn />
+      {/* Auth view */}
+      <AuthView />
     </StyledHeader>
   );
 };

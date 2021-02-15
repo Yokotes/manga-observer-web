@@ -2,24 +2,36 @@ import viewVariables from 'src/views/variables';
 import styled from 'styled-components';
 
 const StyledNav = styled.nav`
-  // display: flex;
-  // justify-content: center;
-  // flex-direction: column;
   flex-grow: 1;
-  padding-top: 80px;
+  padding-top: 30px;
 
-  & > a {
-    display: block;
-    font-size: 2rem;
-    margin-top: 70px;
-    color: ${viewVariables.mainColor};
-  }
+  .menu {
+    &__link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      margin-top: 40px;
+      color: ${viewVariables.menuColor};
 
-  & > a:hover {
-  }
+      &:first-child {
+        margin-top: 0;
+      }
 
-  & > a:first-child {
-    margin-top: 0;
+      & > i {
+        font-size: 1.8rem;
+      }
+
+      & > span {
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        opacity: 0.65;
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+    }
   }
 `;
 

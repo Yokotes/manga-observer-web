@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <StyledLogo>
       <Link to="/" title="Manga Observer">
-        <img src="logo.svg" alt="Logo" />
+        <img src="/logo.svg" alt="Logo" />
       </Link>
     </StyledLogo>
   );

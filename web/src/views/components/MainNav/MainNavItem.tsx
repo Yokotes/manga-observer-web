@@ -11,8 +11,9 @@ const MainNavItem = ({
   classes: string;
 }) => {
   return (
-    <Link to={path} title={title}>
+    <Link to={path} title={title} className="menu__link">
       <i className={classes}></i>
+      <span>{title}</span>
     </Link>
   );
 };
