@@ -7,9 +7,7 @@ const StyledApp = styled.div`
 
   & > .content {
     flex-grow: 1;
-    padding: 0px 20px;
-    max-width: 1700px;
-    margin: 0 auto;
+    padding: 0px 50px;
   }
 `;
 

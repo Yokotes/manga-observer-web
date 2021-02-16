@@ -14,6 +14,10 @@ const StyledSearch = styled.form`
     border-radius: 8px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 
+    &:focus {
+      outline: none;
+    }
+
     &:placeholder {
       font-size: 1rem;
     }
