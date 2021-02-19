@@ -4,6 +4,7 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "sourceMap": true,
+    "outDir": "./dist",
   },
   "exclude": ["node_modules", "dist", "src/client", "**/*spec.ts"]
 }

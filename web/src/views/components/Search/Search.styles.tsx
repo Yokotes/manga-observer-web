@@ -6,7 +6,7 @@ const StyledSearch = styled.form`
   margin-right: 20px;
 
   & > .search__input {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-family: 'Roboto', sans-serif;
     padding: 10px 10px;
     width: 100%;
@@ -16,10 +16,6 @@ const StyledSearch = styled.form`
 
     &:focus {
       outline: none;
-    }
-
-    &:placeholder {
-      font-size: 1rem;
     }
   }
 `;

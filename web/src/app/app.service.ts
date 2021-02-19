@@ -23,7 +23,9 @@ export class AppService {
           <script src="https://kit.fontawesome.com/7a6f88b9b9.js" crossorigin="anonymous"></script>
         </head>
         <body>
-          ${html}
+          <div id="root">${html}</div>
+
+          <script src="/client.js"></script>
         </body>
       </html>`;
   }

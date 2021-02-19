@@ -4,4 +4,6 @@ export default class UserDto {
   name: string;
 
   password: string;
+
+  img: string;
 }

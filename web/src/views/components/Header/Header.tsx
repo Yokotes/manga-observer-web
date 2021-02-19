@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AuthView from '../AuthView/AuthView';
+import ProfileLink from '../ProfileLink/ProfileLink';
 import Search from '../Search/Search';
 import StyledHeader from './Header.styles';
 
@@ -10,7 +10,7 @@ const Header = () => {
       <Search />
 
       {/* Auth view */}
-      <AuthView />
+      <ProfileLink />
     </StyledHeader>
   );
 };

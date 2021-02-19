@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "target": "ES6",
-    "outDir": "./dist",
     "baseUrl": "./",
     "rootDir": "./src"
   }

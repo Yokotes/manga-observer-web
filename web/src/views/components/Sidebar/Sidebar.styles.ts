@@ -1,4 +1,4 @@
-import viewVariables from 'src/views/variables';
+import viewVariables from '../../variables';
 import styled from 'styled-components';
 
 const StyledSidebar = styled.aside`
