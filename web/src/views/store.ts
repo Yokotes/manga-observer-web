@@ -3,7 +3,7 @@ import MainNavSlice from './components/MainNav/MainNavSlice';
 import ProfileSlice from './components/ProfileLink/ProfileSlice';
 import ModalsReducers from './modals/ModalsReducers';
 
-const rootReducers = combineReducers({
+export const rootReducers = combineReducers({
   mainNav: MainNavSlice,
   profile: ProfileSlice,
   modals: ModalsReducers,

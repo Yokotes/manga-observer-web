@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { renderToString } from 'react-dom/server';
 import Layout from '../views/index';
 import { ServerStyleSheet } from 'styled-components';
+import store from 'src/views/store';
 
 @Injectable()
 export class AppService {
@@ -10,6 +11,7 @@ export class AppService {
     const html = renderToString(
       styles.collectStyles(Layout({ location: url })),
     );
+    const preloadedState = store.getState();
 
     return `
       <html>
@@ -24,7 +26,9 @@ export class AppService {
         </head>
         <body>
           <div id="root">${html}</div>
-
+          <script>
+            window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
+          </script>
           <script src="/client.js"></script>
         </body>
       </html>`;

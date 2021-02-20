@@ -15,7 +15,7 @@ const SignUpModal = () => {
     <Modal isShow={signUpState.isShow} close={() => dispatch(hideSignUp())}>
       <StyledSignUp>
         {/* Title */}
-        <Modal.Title>Welcome to Manga Observer</Modal.Title>
+        <Modal.Title>Welcome to Manga Observer!</Modal.Title>
 
         {/* Name input */}
         <TextInput className="signup__input" placeHolder="Your name..." />

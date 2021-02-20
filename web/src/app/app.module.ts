@@ -5,9 +5,10 @@ import secret from 'src/secret';
 import { AppController } from './app.controller';
 import { AppMiddleware } from './app.middleware';
 import { AppService } from './app.service';
+import { MangaModule } from 'src/manga/manga.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(secret.MONGODB), AuthModule],
+  imports: [MongooseModule.forRoot(secret.MONGODB), AuthModule, MangaModule],
   controllers: [AppController],
   providers: [AppService],
 })

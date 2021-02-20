@@ -1,9 +1,11 @@
 export default class UserDto {
-  _id: string;
+  _id?: string;
 
   name: string;
 
   password: string;
 
   img: string;
+
+  mangaList?: string[];
 }
