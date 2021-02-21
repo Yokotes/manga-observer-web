@@ -6,7 +6,7 @@ const MainNavSlice = createSlice({
     items: [
       {
         id: 0,
-        path: '/user/notifications',
+        path: '/user',
         classes: 'far fa-bell',
         title: '(0)',
         isCurrent: false,

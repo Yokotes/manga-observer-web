@@ -5,7 +5,7 @@ const SignUpModalSlice = createSlice({
   initialState: {
     name: '',
     password: '',
-    isShow: false,
+    isShow: true,
   },
   reducers: {
     setName: (state, action) => {

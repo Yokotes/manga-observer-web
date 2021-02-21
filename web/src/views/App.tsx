@@ -26,6 +26,8 @@ const App = () => (
         <Route path="/" exact>
           <HomePage />
         </Route>
+        <Route path="/manga">Manga</Route>
+        <Route path="/user">User</Route>
       </Switch>
     </div>
   </StyledApp>

@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { renderToString } from 'react-dom/server';
+import { renderToStaticMarkup } from 'react-dom/server';
 import Layout from '../views/index';
 import { ServerStyleSheet } from 'styled-components';
-import store from 'src/views/store';
+import store from '../views/store';
 
 @Injectable()
 export class AppService {
   getPage(url: string): string {
     const styles = new ServerStyleSheet();
-    const html = renderToString(
-      styles.collectStyles(Layout({ location: url })),
+    const html = renderToStaticMarkup(
+      styles.collectStyles(Layout({ location: url, store })),
     );
     const preloadedState = store.getState();
 

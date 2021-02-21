@@ -1,8 +1,8 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
-import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router-dom';
 import App from './App';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { rootReducers } from './store';
 import { createStore } from 'redux';
 
@@ -12,11 +12,13 @@ delete window.__PRELOADED_STATE__;
 
 const clientStore = createStore(rootReducers, preloadedState);
 
+console.log(document.getElementById('root').hasChildNodes());
+
 ReactDOM.hydrate(
-  <StaticRouter location={window.location.pathname}>
+  <BrowserRouter>
     <Provider store={clientStore}>
       <App />
     </Provider>
-  </StaticRouter>,
+  </BrowserRouter>,
   document.querySelector('#root'),
 );

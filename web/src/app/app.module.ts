@@ -15,7 +15,7 @@ import { MangaModule } from 'src/manga/manga.module';
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(AppMiddleware).forRoutes({
-      path: '/',
+      path: '*',
       method: RequestMethod.GET,
     });
   }

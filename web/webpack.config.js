@@ -15,11 +15,13 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         },
+        include: path.resolve(__dirname, 'src', 'views'),
         exclude:/(node_modules|bower_components)/,
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        loader: 'ts-loader',
+        include: path.resolve(__dirname, 'src', 'views'),
         exclude: /node_modules/,
       }
     ]
