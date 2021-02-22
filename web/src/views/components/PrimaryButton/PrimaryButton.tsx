@@ -4,11 +4,18 @@ import StyledPrimaryButton from './PrimaryButton.styles';
 type PrimaryButtonProps = {
   children: React.ReactChild;
   className?: string;
+  onClick?(): void;
 };
 
-const PrimaryButton = ({ children, className }: PrimaryButtonProps) => {
+const PrimaryButton = ({
+  children,
+  className,
+  onClick,
+}: PrimaryButtonProps) => {
   return (
-    <StyledPrimaryButton className={className}>{children}</StyledPrimaryButton>
+    <StyledPrimaryButton className={className} onClick={onClick}>
+      {children}
+    </StyledPrimaryButton>
   );
 };
 

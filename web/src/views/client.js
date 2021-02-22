@@ -12,8 +12,6 @@ delete window.__PRELOADED_STATE__;
 
 const clientStore = createStore(rootReducers, preloadedState);
 
-console.log(document.getElementById('root').hasChildNodes());
-
 ReactDOM.hydrate(
   <BrowserRouter>
     <Provider store={clientStore}>

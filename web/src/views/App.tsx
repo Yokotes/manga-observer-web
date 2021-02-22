@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import StyledApp from './App.styles';
 import Header from './components/Header/Header';
+import PopUpContainer from './components/PopUp/PopUpContainer';
 import Sidebar from './components/Sidebar/Sidebar';
 import HomePage from './containers/HomePage/HomePage';
 import LogInModal from './modals/LogInModal/LogInModal';
@@ -29,6 +30,9 @@ const App = () => (
         <Route path="/manga">Manga</Route>
         <Route path="/user">User</Route>
       </Switch>
+
+      {/* PopUps */}
+      <PopUpContainer />
     </div>
   </StyledApp>
 );

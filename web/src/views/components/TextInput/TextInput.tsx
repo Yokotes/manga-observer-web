@@ -2,7 +2,7 @@ import * as React from 'react';
 import StyledTextInput from './TextInput.styles';
 
 type TextInputProps = {
-  onChange?(e: React.ChangeEvent): void;
+  onChange?(e: React.FormEvent<HTMLInputElement>): void;
   placeHolder?: string;
   className?: string;
   type?: 'text' | 'email' | 'password';
@@ -17,7 +17,7 @@ const TextInput = ({
   return (
     <StyledTextInput
       type={type}
-      onChange={(e) => onChange(e)}
+      onChange={onChange}
       placeholder={placeHolder}
       className={className}
     />

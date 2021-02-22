@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  BlackScreen,
   StyledModal,
   StyledModalCloseBtn,
   StyledModalTitle,
@@ -15,14 +16,21 @@ type ModalTitleProps = {
   children: React.ReactChild;
 };
 
+//
+// @Change: Decide to make one black screen for all modals or
+// leave it as it is
+//
 const Modal = ({ children, isShow, close }: ModalProps) => {
   return isShow ? (
-    <StyledModal>
-      <StyledModalCloseBtn title="Close" onClick={close}>
-        <i className="fas fa-times"></i>
-      </StyledModalCloseBtn>
-      {children}
-    </StyledModal>
+    <>
+      <StyledModal>
+        <StyledModalCloseBtn title="Close" onClick={close}>
+          <i className="fas fa-times"></i>
+        </StyledModalCloseBtn>
+        {children}
+      </StyledModal>
+      <BlackScreen onClick={close} />
+    </>
   ) : null;
 };
 

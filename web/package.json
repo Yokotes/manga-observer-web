@@ -15,6 +15,7 @@
   },
   "scripts": {
     "client": "webpack",
+    "client:dev": "webpack --mode=development --watch",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -37,6 +38,7 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@reduxjs/toolkit": "^1.5.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
