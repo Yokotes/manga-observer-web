@@ -16,8 +16,8 @@ export class UserController {
   @Post('')
   @HttpCode(201)
   async newUser(@Body() user: UserDto) {
-    await this.userService.create(user);
+    const newUser = await this.userService.create(user);
 
-    return { message: `User '${user.name}' created` };
+    return { message: `User '${newUser.name}' created` };
   }
 }

@@ -3,25 +3,47 @@ import { createSlice } from '@reduxjs/toolkit';
 const ProfileSlice = createSlice({
   name: 'profile',
   initialState: {
-    _id: '',
+    authToken: '',
     name: '',
+    _id: '',
     img: '',
   },
   reducers: {
+    setToken: (state, action) => {
+      state.authToken = action.payload;
+
+      window.localStorage.setItem('access_token', action.payload);
+    },
     setName: (state, action) => {
       state.name = action.payload;
     },
-
+    setId: (state, action) => {
+      state._id = action.payload;
+    },
     setImg: (state, action) => {
       state.img = action.payload;
     },
+    signOut: (state) => {
+      state.name = '';
+      state.img = '';
+      state._id = '';
+      state.authToken = '';
 
-    setProfile: (state, action) => {
-      state = action.payload;
+      window.localStorage.removeItem('access_token');
+    },
+    getTokenFromStorage: (state) => {
+      state.authToken = window.localStorage.getItem('access_token');
     },
   },
 });
 
-export const { setName, setImg, setProfile } = ProfileSlice.actions;
+export const {
+  setToken,
+  getTokenFromStorage,
+  setName,
+  setId,
+  setImg,
+  signOut,
+} = ProfileSlice.actions;
 
 export default ProfileSlice.reducer;

@@ -19,9 +19,6 @@ const setTimer = (id: number, time: number, dispatch) => {
 const PopUpMessage = ({ msg, type, close, id }: PopUpMessageProps) => {
   const dispatch = useDispatch();
 
-  //
-  // @Description: Set timer. When time end PopUp will desappear
-  //
   setTimer(id, 5000, dispatch);
 
   return (

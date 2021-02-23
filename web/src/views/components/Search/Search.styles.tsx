@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const StyledSearch = styled.form`
   flex-grow: 1;
   max-width: 1000px;
-  margin-right: 20px;
+  margin-right: 40px;
+  margin-bottom: 0;
 
   & > .search__input {
     font-size: 1.1rem;

@@ -8,6 +8,7 @@ import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 import { hideSignUp, setName, setPassword } from './SignUpModalSlice';
 import * as axios from 'axios';
 import { addMessage } from '../../components/PopUp/PopUpSlice';
+import { setToken } from '../../components/ProfileLink/ProfileSlice';
 
 const SignUpModal = () => {
   const signUpState = useSelector((state: RootState) => state.modals.signUp);
@@ -32,17 +33,32 @@ const SignUpModal = () => {
 
           //
           // @Description: Send POST request to server to add new user
-          // If user already exists, show PopUp with type 'error'
-          // Else show PopUp with 'message' type
+          //  If user already exists, show PopUp with type 'error'
+          //  Else show PopUp with 'message' type
+          //  After registration new user complete send auth request
+          //  to get access token and write it to the state
           //
           submit()
-            .then((res) => {
+            .then(async (res) => {
+              // Add pop up
               dispatch(
                 addMessage({
                   message: res.data.message,
                   type: 'message',
                 }),
               );
+
+              // Send auth request
+              const user = {
+                username: signUpState.name,
+                password: signUpState.password,
+              };
+
+              const auth = await axios.default.post('/api/v1/auth/login', user);
+
+              // Write token to the state and to the local storage, then close modal
+              dispatch(setToken(auth.data.access_token));
+              dispatch(hideSignUp());
             })
             .catch((error) => {
               const res = error.response;

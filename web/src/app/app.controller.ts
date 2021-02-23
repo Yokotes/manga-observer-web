@@ -1,4 +1,4 @@
-import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import UserDto from 'src/dto/user.dto';
@@ -12,7 +12,7 @@ export class AppController {
     private authService: AuthService,
   ) {}
 
-  @Get('auth/login')
+  @Post('auth/login')
   @UseGuards(AuthGuard('local'))
   getJwt(@Req() req: Request) {
     return this.authService.login(req.user as UserDto);
