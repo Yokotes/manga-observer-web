@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import MangaDto from '../dto/manga,dto';
-import { Manga, MangaDocument } from 'src/schemas/manga.schema';
+import MangaDto from '../../dto/manga,dto';
+import { Manga, MangaDocument } from '../../schemas/manga.schema';
 
 @Injectable()
 export class MangaService {

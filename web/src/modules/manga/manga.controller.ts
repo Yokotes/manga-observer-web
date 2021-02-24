@@ -1,5 +1,5 @@
 import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
-import MangaDto from '../dto/manga,dto';
+import MangaDto from '../../dto/manga,dto';
 import { MangaService } from './manga.service';
 
 @Controller('api/v1/manga')

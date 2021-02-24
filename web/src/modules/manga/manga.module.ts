@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Manga, MangaSchema } from '../schemas/manga.schema';
+import { Manga, MangaSchema } from '../../schemas/manga.schema';
 import { MangaController } from './manga.controller';
 import { MangaService } from './manga.service';
 

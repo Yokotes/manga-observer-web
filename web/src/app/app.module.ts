@@ -1,11 +1,11 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuthModule } from 'src/user/auth/auth.module';
+import { AuthModule } from '../modules/auth/auth.module';
 import secret from 'src/secret';
 import { AppController } from './app.controller';
 import { AppMiddleware } from './app.middleware';
 import { AppService } from './app.service';
-import { MangaModule } from 'src/manga/manga.module';
+import { MangaModule } from '../modules/manga/manga.module';
 
 @Module({
   imports: [MongooseModule.forRoot(secret.MONGODB), AuthModule, MangaModule],

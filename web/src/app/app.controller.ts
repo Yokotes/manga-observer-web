@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import UserDto from 'src/dto/user.dto';
-import { AuthService } from 'src/user/auth/auth.service';
+import UserDto from '../dto/user.dto';
+import { AuthService } from '../modules/auth/auth.service';
 import { AppService } from './app.service';
 
 @Controller('api/v1')
