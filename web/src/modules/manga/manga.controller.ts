@@ -1,4 +1,13 @@
-import { Body, Controller, Get, HttpCode, HttpException, Param, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpException,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { Response } from 'express';
 import MangaDto from '../../dto/manga,dto';
 import { MangaService } from './manga.service';

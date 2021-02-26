@@ -1,25 +1,30 @@
 import * as React from 'react';
+import { StyledMangaItem } from './Manga.styles';
 
 type MangaItemProps = {
-  _id: string;
   title: string;
   link: string;
-  description: string;
   img: string;
   latestChapter: string;
-  isShow: boolean;
 };
 
-const MangaItem = ({
-  _id,
-  title,
-  link,
-  description,
-  img,
-  latestChapter,
-  isShow,
-}: MangaItemProps) => {
-  return <>{title}</>;
+type StyledMangaProps = {
+  img: string;
 };
+
+const MangaItem = ({ title, link, img, latestChapter }: MangaItemProps) => {
+  return (
+    <StyledMangaItem img={img}>
+      <div className="manga__content">
+        <h2 className="manga__title">{title}</h2>
+        <a href={link} target="_blank" className="manga__link">
+          {latestChapter ? latestChapter : 'Latest chapter'}
+        </a>
+      </div>
+    </StyledMangaItem>
+  );
+};
+
+export { StyledMangaProps };
 
 export default MangaItem;
