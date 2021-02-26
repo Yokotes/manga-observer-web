@@ -23,13 +23,15 @@ const App = () => (
       <LogInModal />
 
       {/* Switch */}
-      <Switch>
-        <Route path="/" exact>
-          <HomePage />
-        </Route>
-        <Route path="/manga">Manga</Route>
-        <Route path="/user">User</Route>
-      </Switch>
+      <div className="switch">
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+          <Route path="/manga">Manga</Route>
+          <Route path="/user">User</Route>
+        </Switch>
+      </div>
 
       {/* PopUps */}
       <PopUpContainer />

@@ -1,8 +1,9 @@
-import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpException, Param, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import MangaDto from '../../dto/manga,dto';
 import { MangaService } from './manga.service';
 
-@Controller('api/v1/manga')
+@Controller('api/v1/mangas')
 export class MangaController {
   constructor(private readonly mangaService: MangaService) {}
 
@@ -14,9 +15,14 @@ export class MangaController {
   }
 
   @Get()
-  async getAll() {
+  async getAll(@Res() res: Response) {
     const mangaList = await this.mangaService.findAll();
-    return mangaList;
+
+    if (mangaList.length !== 0) {
+      return res.status(200).json(mangaList);
+    } else {
+      throw new HttpException('No manga in database!', 404);
+    }
   }
 
   @Get(':id')

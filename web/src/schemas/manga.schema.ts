@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as schema } from 'mongoose';
 
 export type MangaDocument = Manga & Document;
 
 @Schema()
 export class Manga {
+  @Prop({ type: schema.Types.ObjectId, auto: true, transform: String })
+  _id: string;
+
   @Prop({ type: String, default: '' })
   title: string;
 
