@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a web version of Manga Observer. The main functions of this application are checking manga chapters release and sending notification to user (to email). In web version I will add authorization.
+This is a web version of Manga Observer. The main functions of this application are checking manga chapters release and sending notification to user (on web app). In web version I will add authorization.
 
 ## Why this app exist
 
