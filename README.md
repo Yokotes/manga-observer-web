@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/Yokotes/manga-observer-web/blob/master/nginx/public/github.png">
+</p>
+
 # Manga Observer Web
 
 ## Overview
