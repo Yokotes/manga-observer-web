@@ -6,6 +6,7 @@ type TextInputProps = {
   placeHolder?: string;
   className?: string;
   type?: 'text' | 'email' | 'password';
+  value?: string;
 };
 
 const TextInput = ({
@@ -13,6 +14,7 @@ const TextInput = ({
   placeHolder = 'Text...',
   className,
   type = 'text',
+  value,
 }: TextInputProps) => {
   return (
     <StyledTextInput
@@ -20,6 +22,7 @@ const TextInput = ({
       onChange={onChange}
       placeholder={placeHolder}
       className={className}
+      defaultValue={value}
     />
   );
 };

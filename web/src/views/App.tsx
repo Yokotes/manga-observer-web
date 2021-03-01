@@ -1,3 +1,4 @@
+import ProfilePage from './containers/ProfilePage/ProfilePage';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import StyledApp from './App.styles';
@@ -27,7 +28,9 @@ const App = () => (
           <HomePage />
         </Route>
         <Route path="/manga">Manga</Route>
-        <Route path="/user">User</Route>
+        <Route path="/profile">
+          <ProfilePage />
+        </Route>
       </Switch>
 
       {/* PopUps */}
