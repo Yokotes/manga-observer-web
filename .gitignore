@@ -16,6 +16,7 @@ lerna-debug.log*
 
 # Secret data
 secret.ts
+test.js
 
 # OS
 .DS_Store
