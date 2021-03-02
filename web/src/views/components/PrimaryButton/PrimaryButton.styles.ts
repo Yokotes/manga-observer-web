@@ -18,6 +18,10 @@ const StyledPrimaryButton = styled.button`
     box-shadow: 0px 0px 6px ${viewVariables.mainColor};
     text-shadow: 0px 0px 5px #fff;
   }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default StyledPrimaryButton;

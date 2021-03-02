@@ -19,6 +19,19 @@ export class UserService {
     return newUser.save();
   }
 
+  async updateUserData(id: string, data: UserDto) {
+    return await this.userModel.updateOne(
+      { _id: id },
+      {
+        $set: {
+          name: data.name,
+          password: data.password,
+          img: data.img,
+        },
+      },
+    );
+  }
+
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }

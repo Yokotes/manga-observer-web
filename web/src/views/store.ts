@@ -3,6 +3,7 @@ import MainNavSlice from './components/MainNav/MainNavSlice';
 import MangaSlice from './components/Manga/MangaSlice';
 import PopUpSlice from './components/PopUp/PopUpSlice';
 import ProfileSlice from './components/ProfileLink/ProfileSlice';
+import ProfileFormSlice from './containers/ProfilePage/ProfileFormSlice';
 import ModalsReducers from './modals/ModalsReducers';
 
 export const rootReducers = combineReducers({
@@ -11,6 +12,7 @@ export const rootReducers = combineReducers({
   modals: ModalsReducers,
   popUp: PopUpSlice,
   manga: MangaSlice,
+  profileForm: ProfileFormSlice,
 });
 
 const store = configureStore({

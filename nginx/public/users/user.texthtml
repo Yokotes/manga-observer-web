@@ -1,0 +1,74 @@
+<html>
+        <head>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+          <title>Manga Observer | Web</title>
+          <style data-styled="true" data-styled-version="5.2.1">.bOTGgG{width:150px;height:150px;position:relative;border-radius:50%;overflow:hidden;box-shadow:0px 0px 6px rgba(0,0,0,0.25);}/*!sc*/
+.bOTGgG > img{height:100%;display:block;margin:0 auto;}/*!sc*/
+.bOTGgG > input{position:absolute;width:100%;height:100%;opacity:0;cursor:pointer;}/*!sc*/
+data-styled.g1[id="sc-bdfBwQ"]{content:"bOTGgG,"}/*!sc*/
+.bBeHNj{max-width:1100px;}/*!sc*/
+.bBeHNj .form__content{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;}/*!sc*/
+.bBeHNj .profile__h1,.bBeHNj .profile__h2{font-family:'Montserrat',sans-serif;font-weight:500;}/*!sc*/
+.bBeHNj .profile__h1{margin-bottom:60px;}/*!sc*/
+.bBeHNj .profile__h2{margin-bottom:40px;}/*!sc*/
+.bBeHNj .profile__block{margin-right:20px;margin-top:20px;}/*!sc*/
+.bBeHNj .profile__block:last-child{margin-right:0;}/*!sc*/
+.bBeHNj .profile__input{margin-top:20px;}/*!sc*/
+.bBeHNj .profile__submit-btn{display:block;margin:0 auto;margin-top:50px;}/*!sc*/
+data-styled.g2[id="sc-gsTCUz"]{content:"bBeHNj,"}/*!sc*/
+.gTUBfU{font-size:1.05rem;font-family:'Roboto',sans-serif;padding:10px 12px;width:100%;border:none;border-radius:6px;box-shadow:0px 0px 6px rgba(0,0,0,0.25);}/*!sc*/
+.gTUBfU:focus{outline:none;}/*!sc*/
+data-styled.g3[id="sc-dlfnbm"]{content:"gTUBfU,"}/*!sc*/
+.NUfLL{border:none;background-color:#EB3131;color:#fff;font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:600;padding:15px 25px;border-radius:15px;cursor:pointer;text-transform:uppercase;-webkit-transition:box-shadow 0.5s,text-shadow 0.5s;transition:box-shadow 0.5s,text-shadow 0.5s;}/*!sc*/
+.NUfLL:hover{box-shadow:0px 0px 6px #EB3131;text-shadow:0px 0px 5px #fff;}/*!sc*/
+.NUfLL:focus{outline:none;}/*!sc*/
+data-styled.g4[id="sc-hKgILt"]{content:"NUfLL,"}/*!sc*/
+.eYLXTc{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;background-color:#DCDCDC;}/*!sc*/
+.eYLXTc > .content{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;padding:0px 30px;}/*!sc*/
+data-styled.g5[id="sc-eCssSg"]{content:"eYLXTc,"}/*!sc*/
+.habGAC{color:#EB3131;background:none;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:500;font-size:1rem;}/*!sc*/
+.habGAC:hover{-webkit-text-decoration:underline;text-decoration:underline;}/*!sc*/
+.habGAC:focus{outline:none;}/*!sc*/
+data-styled.g6[id="sc-jSgupP"]{content:"habGAC,"}/*!sc*/
+.jKyIEl{font-family:'Roboto',sans-serif;}/*!sc*/
+data-styled.g8[id="sc-iBPRYJ"]{content:"jKyIEl,"}/*!sc*/
+.dtCTpy{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;max-width:1000px;margin-right:40px;margin-bottom:0;}/*!sc*/
+.dtCTpy > .search__input{font-size:1.1rem;font-family:'Roboto',sans-serif;padding:10px 10px;width:100%;border:none;border-radius:8px;box-shadow:0px 0px 5px rgba(0,0,0,0.25);}/*!sc*/
+.dtCTpy > .search__input:focus{outline:none;}/*!sc*/
+data-styled.g9[id="sc-fubCfw"]{content:"dtCTpy,"}/*!sc*/
+.fPwFYb{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding-top:20px;border-bottom:1px solid #00000033;padding-bottom:25px;margin-bottom:25px;}/*!sc*/
+data-styled.g10[id="sc-pFZIQ"]{content:"fPwFYb,"}/*!sc*/
+.ktvirJ{position:fixed;right:10px;bottom:10px;}/*!sc*/
+.ktvirJ > .popUp{position:relative;border:2.5px solid #99ccff;background-color:#99ccff33;border-radius:10px;padding:20px 40px;font-family:'Roboto',sans-serif;margin-top:10px;text-align:center;}/*!sc*/
+.ktvirJ > .popUp.error{background-color:#EB313133;border-color:#EB3131;}/*!sc*/
+.ktvirJ > .popUp.warning{background-color:#F2C12133;border-color:#F2C121;}/*!sc*/
+data-styled.g11[id="sc-jrAGrp"]{content:"ktvirJ,"}/*!sc*/
+.heRA-dX{width:50px;}/*!sc*/
+.heRA-dX > a{display:block;padding:30px 0;padding-bottom:40px;border-bottom:1px solid #fff3;}/*!sc*/
+.heRA-dX img{width:100%;}/*!sc*/
+data-styled.g13[id="sc-iqHYGH"]{content:"heRA-dX,"}/*!sc*/
+.gtZFnt{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;padding-top:30px;}/*!sc*/
+.gtZFnt .menu__link{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-text-decoration:none;text-decoration:none;margin-top:40px;color:#fff;}/*!sc*/
+.gtZFnt .menu__link:first-child{margin-top:0;}/*!sc*/
+.gtZFnt .menu__link > i{font-size:1.8rem;}/*!sc*/
+.gtZFnt .menu__link > span{display:block;font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.9rem;opacity:0.65;text-transform:uppercase;margin-top:10px;}/*!sc*/
+data-styled.g14[id="sc-crrsfI"]{content:"gtZFnt,"}/*!sc*/
+.kRbpqL{background-color:transparent;border:none;cursor:pointer;color:#fff;font-size:2.5rem;font-family:'Roboto',sans-serif;font-weight:bold;margin-bottom:30px;border-top:1px solid #fff3;}/*!sc*/
+.kRbpqL:focus{outline:none;}/*!sc*/
+data-styled.g15[id="sc-dQppl"]{content:"kRbpqL,"}/*!sc*/
+.fuVHQO{width:80px;height:100vh;background-color:#303030;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}/*!sc*/
+data-styled.g16[id="sc-bqyKva"]{content:"fuVHQO,"}/*!sc*/
+</style>
+          <script src="https://kit.fontawesome.com/7a6f88b9b9.js" crossorigin="anonymous"></script>
+        </head>
+        <body>
+          <div id="root"><div class="sc-eCssSg eYLXTc"><aside class="sc-bqyKva fuVHQO"><div class="sc-iqHYGH heRA-dX"><a title="Manga Observer" href="/"><img src="/logo.svg" alt="Logo"/></a></div><nav class="sc-crrsfI gtZFnt"><a title="(0)" class="menu__link" href="/user"><i class="far fa-bell"></i><span>(0)</span></a><a title="Manga" class="menu__link" href="/manga"><i class="far fa-list-alt"></i><span>Manga</span></a></nav><button title="More" class="sc-dQppl kRbpqL">...</button></aside><div class="content"><header class="sc-pFZIQ fPwFYb"><form class="sc-fubCfw dtCTpy"><input class="search__input" placeholder="Find manga..."/></form><div class="sc-iBPRYJ jKyIEl">You have an account?<button class="sc-jSgupP habGAC">Sign In</button>|<button class="sc-jSgupP habGAC">Create an account</button></div></header><div class="sc-gsTCUz bBeHNj"><h1 class="profile__h1">Profile settings</h1><form><div class="form__content"><div class="profile__block"><h2 class="profile__h2">Change profile image</h2><div class="sc-bdfBwQ bOTGgG"><input type="file"/><img src=""/></div></div><div class="profile__block"><h2 class="profile__h2">Change user data</h2><input type="text" placeholder="Username..." class="sc-dlfnbm gTUBfU profile__input" value=""/><input type="password" placeholder="Enter new password..." class="sc-dlfnbm gTUBfU profile__input"/><input type="password" placeholder="Enter new password again..." class="sc-dlfnbm gTUBfU profile__input"/></div></div><button class="sc-hKgILt NUfLL profile__submit-btn">Update profile</button></form></div><div class="sc-jrAGrp ktvirJ"></div></div></div></div>
+          <script>
+            window.__PRELOADED_STATE__ = {"mainNav":{"items":[{"id":0,"path":"/user","classes":"far fa-bell","title":"(0)","isCurrent":false},{"id":1,"path":"/manga","classes":"far fa-list-alt","title":"Manga","isCurrent":false}]},"profile":{"authToken":"","name":"","_id":"","img":""},"modals":{"signUp":{"name":"","password":"","isShow":false},"logIn":{"name":"","password":"","isShow":false}},"popUp":{"messages":[]},"manga":{"manga":[]},"profileForm":{"username":"","password":"","submitPassword":"","formImg":""}}
+          </script>
+          <script src="/client.js"></script>
+        </body>
+      </html>
