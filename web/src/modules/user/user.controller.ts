@@ -20,11 +20,17 @@ import UserDto from '../../dto/user.dto';
 import { User } from '../../schemas/user.schema';
 import { UserService } from './user.service';
 import * as fs from 'fs';
-import { resolve } from 'path';
+import { resolve, join } from 'path';
+import { AuthService } from '../auth/auth.service';
+import { HashService } from '../hash/hash.service';
 
 @Controller('api/v1/users')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly authService: AuthService,
+    private readonly hashService: HashService,
+  ) {}
   //
   // @Change: Remove this endpoint from prod build
   //
@@ -69,33 +75,34 @@ export class UserController {
     const auth = reqUser._id.toString() === id.toString();
 
     if (auth) {
-      const password = await hash(body.password, 6);
       const user = await this.userService.findOneById(reqUser._id);
+      const password = body.password ? await hash(body.password, 6) : '';
       let newImg = '';
 
-      if (file) {
-        fs.writeFileSync(
-          resolve(
-            __dirname,
-            '..',
-            '..',
-            '..',
-            '..',
-            'nginx',
-            'public',
-            'users',
-            user.name +
-              '.' +
-              file.mimetype
-                .toString()
-                .replace('image', '')
-                .replace('\\', '')
-                .replace('/', ''),
-          ),
-          file.buffer,
+      if (file && file.mimetype.includes('image')) {
+        const filename =
+          user.name +
+          '.' +
+          this.hashService.hash(user.name) +
+          '.' +
+          file.mimetype.replace('image/', '');
+        const path = resolve(
+          __dirname,
+          '..',
+          '..',
+          '..',
+          '..',
+          'nginx',
+          'public',
         );
 
-        newImg = `/users/${user.name}`;
+        newImg = join('users', filename);
+        try {
+          fs.unlinkSync(join(path, user.img));
+        } catch {
+          throw new Error('No such file in directory!');
+        }
+        fs.writeFileSync(join(path, newImg), file.buffer);
       }
 
       const data: UserDto = {
@@ -107,6 +114,8 @@ export class UserController {
       };
 
       await this.userService.updateUserData(data._id, data);
+
+      return this.authService.login(data);
     }
   }
 }

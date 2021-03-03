@@ -20,7 +20,7 @@ export class UserService {
   }
 
   async updateUserData(id: string, data: UserDto) {
-    return await this.userModel.updateOne(
+    await this.userModel.updateOne(
       { _id: id },
       {
         $set: {

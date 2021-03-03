@@ -13,18 +13,23 @@ import {
   setPassword,
 } from './ProfileFormSlice';
 import axios from 'axios';
+import { setToken } from '../../components/ProfileLink/ProfileSlice';
 const ProfilePage = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const profileForm = useSelector((state: RootState) => state.profileForm);
   const dispatch = useDispatch();
 
   //
-  // @Complete: Finish this function that send form data
-  //  to the server!
+  // @Description: Submit function that build form data
+  //   and send it to the server, after receiving response
+  //   update the state
   //
-  const submit = async (): Promise<boolean> => {
+  const submit = async () => {
     const data = new FormData();
 
+    //
+    // @Description: Check if passwords are different
+    //
     if (
       profileForm.password !== profileForm.submitPassword &&
       (profileForm.password !== '' || profileForm.submitPassword !== '')
@@ -35,9 +40,12 @@ const ProfilePage = () => {
           type: 'warning',
         }),
       );
-      return false;
+      return;
     }
 
+    //
+    // @Description: Add all key/value pars in form data variable
+    //
     for (const key in profileForm) {
       if (key === 'username' && profileForm.username === '') {
         data.append(key, profile.name);
@@ -56,14 +64,35 @@ const ProfilePage = () => {
       data.append(key, profileForm[key]);
     }
 
-    axios
+    //
+    // @Description: Send PUT request to the server.
+    //   After receiving response change token and add Pop up message
+    //
+    await axios
       .put(`/api/v1/users/${profile._id}`, data, {
         headers: {
           Authorization: `Bearer ${profile.authToken}`,
         },
       })
-      .then(() => true)
-      .catch(() => false);
+      .then((res) => {
+        if (res) {
+          dispatch(setToken(res.data.access_token));
+          dispatch(
+            addMessage({
+              message: 'Profile updated!',
+              type: 'message',
+            }),
+          );
+        }
+      })
+      .catch((err) => {
+        dispatch(
+          addMessage({
+            message: 'Error: ' + err.request.message,
+            type: 'error',
+          }),
+        );
+      });
   };
 
   return (
@@ -73,23 +102,7 @@ const ProfilePage = () => {
         onSubmit={async (e) => {
           e.preventDefault();
 
-          const res = await submit();
-
-          if (res) {
-            dispatch(
-              addMessage({
-                message: 'Profile updated!',
-                type: 'message',
-              }),
-            );
-          } else {
-            dispatch(
-              addMessage({
-                message: 'Error: Something went wrong',
-                type: 'error',
-              }),
-            );
-          }
+          await submit();
         }}
       >
         <div className="form__content">
