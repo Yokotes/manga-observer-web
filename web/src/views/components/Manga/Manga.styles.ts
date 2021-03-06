@@ -6,6 +6,10 @@ const StyledMangaContainer = styled.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+
+  & > .no-manga {
+    font-family: 'Roboto', sans-serif;
+  }
 `;
 
 const StyledMangaItem = styled.div`

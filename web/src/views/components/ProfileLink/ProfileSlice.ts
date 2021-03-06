@@ -7,6 +7,7 @@ const ProfileSlice = createSlice({
     name: '',
     _id: '',
     img: '',
+    mangaList: [],
   },
   reducers: {
     setToken: (state, action) => {
@@ -22,6 +23,12 @@ const ProfileSlice = createSlice({
     },
     setImg: (state, action) => {
       state.img = action.payload;
+    },
+    setMangaList: (state, action) => {
+      state.mangaList = action.payload;
+    },
+    dropManga: (state, action) => {
+      state.mangaList = state.mangaList.filter((manga) => manga !== action);
     },
     signOut: (state) => {
       state.name = '';
@@ -43,6 +50,8 @@ export const {
   setName,
   setId,
   setImg,
+  setMangaList,
+  dropManga,
   signOut,
 } = ProfileSlice.actions;
 

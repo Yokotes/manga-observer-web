@@ -14,6 +14,8 @@ import {
 } from './ProfileFormSlice';
 import axios from 'axios';
 import { setToken } from '../../components/ProfileLink/ProfileSlice';
+import MyMangaList from '../../components/MyMangaList/MyMangaList';
+
 const ProfilePage = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const profileForm = useSelector((state: RootState) => state.profileForm);
@@ -108,7 +110,7 @@ const ProfilePage = () => {
         <div className="form__content">
           {/* Profile input block */}
           <div className="profile__block">
-            <h2 className="profile__h2">Change profile image</h2>
+            <h2 className="profile__h2">Profile image</h2>
             <ImageInput
               onChange={(e) => {
                 const img = e.target.files[0];
@@ -132,7 +134,7 @@ const ProfilePage = () => {
 
           {/* Profile input block */}
           <div className="profile__block">
-            <h2 className="profile__h2">Change user data</h2>
+            <h2 className="profile__h2">Login and password</h2>
             <TextInput
               className="profile__input"
               onChange={(e) => dispatch(setUsername(e.currentTarget.value))}
@@ -160,6 +162,8 @@ const ProfilePage = () => {
           Update profile
         </PrimaryButton>
       </form>
+      <h1 className="profile__h1">My manga list</h1>
+      <MyMangaList />
     </StyledProfilePage>
   );
 };

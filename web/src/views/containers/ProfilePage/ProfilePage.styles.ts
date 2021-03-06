@@ -3,6 +3,10 @@ import styled from 'styled-components';
 const StyledProfilePage = styled.div`
   max-width: 1100px;
 
+  & > form {
+    padding-bottom: 50px;
+  }
+
   & .form__content {
     display: flex;
     justify-content: space-between;
@@ -39,7 +43,6 @@ const StyledProfilePage = styled.div`
 
     &__submit-btn {
       display: block;
-      margin: 0 auto;
       margin-top: 50px;
     }
   }
