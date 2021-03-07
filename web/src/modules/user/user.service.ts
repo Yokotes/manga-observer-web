@@ -32,6 +32,19 @@ export class UserService {
     );
   }
 
+  async removeManga(_userId: string, _mangaId: string) {
+    const user = await this.userModel.findById(_userId);
+    const mangaList = user.mangaList.filter((manga) => manga !== _mangaId);
+
+    user
+      .updateOne({
+        $set: {
+          mangaList: mangaList,
+        },
+      })
+      .exec();
+  }
+
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
   }

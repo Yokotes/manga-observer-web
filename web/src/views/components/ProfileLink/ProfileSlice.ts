@@ -27,7 +27,7 @@ const ProfileSlice = createSlice({
     setMangaList: (state, action) => {
       state.mangaList = action.payload;
     },
-    dropManga: (state, action) => {
+    dropUserManga: (state, action) => {
       state.mangaList = state.mangaList.filter((manga) => manga !== action);
     },
     signOut: (state) => {
@@ -51,7 +51,7 @@ export const {
   setId,
   setImg,
   setMangaList,
-  dropManga,
+  dropUserManga,
   signOut,
 } = ProfileSlice.actions;
 

@@ -17,11 +17,14 @@ export class Manga {
   @Prop({ type: String, default: '' })
   description: string;
 
-  @Prop({ type: String, default: '' })
+  @Prop({ type: String, default: '/no_img.png' })
   img: string;
 
   @Prop({ type: String, default: '' })
   latestChapter: string;
+
+  @Prop({ type: Array, default: [] })
+  subscribers: string[];
 }
 
 export const MangaSchema = SchemaFactory.createForClass(Manga);

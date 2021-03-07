@@ -3,31 +3,49 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledMyMangaList } from './MyMangaList.styles';
 import axios from 'axios';
-import { addManga } from '../../components/Manga/MangaSlice';
+import { addManga, dropManga } from '../../components/Manga/MangaSlice';
 import { addMessage } from '../../components/PopUp/PopUpSlice';
 import { useEffect } from 'react';
 import MyMangaListItem from './MyMangaListItem';
-import { dropManga } from '../ProfileLink/ProfileSlice';
+import { dropUserManga } from '../ProfileLink/ProfileSlice';
 
 const MyMangaList = () => {
-  const userMangaList = useSelector(
-    (state: RootState) => state.profile.mangaList,
-  );
+  const profile = useSelector((state: RootState) => state.profile);
   const mangaList = useSelector((state: RootState) => state.manga.manga);
   const dispatch = useDispatch();
 
-  //
-  // @Description: Fetch manga list from database
-  //  and filter it by user's manga list
-  //
-  const fillManga = async () => {
-    const manga = await axios.get('/api/v1/mangas');
+  const removeManga = async (id: string) => {
+    await axios.delete(`/api/v1/mangas/${id}/users/${profile._id}`);
+    const userRes = await axios.delete(
+      `/api/v1/users/${profile._id}/manga/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${profile.authToken}`,
+        },
+      },
+    );
 
-    return manga.data.filter((manga) => userMangaList.includes(manga._id));
+    return userRes.data;
   };
 
+  //
+  // @Description: Fetch manga list by ids and write it to the state
+  //
+  const fillManga = async () => {
+    const mangaArray = await axios.post('/api/v1/mangas', profile.mangaList);
+
+    return mangaArray.data;
+  };
+
+  //
+  // @Change: After deleting item from user's manga list and global manga list
+  //  Item still exist in the state. Fix it.
+  //  Think about merging global manga list and user's manga list
+  //
   useEffect(() => {
-    if (mangaList.length === 0) {
+    console.log(mangaList);
+    if (mangaList.length === 0 && profile.mangaList.length !== 0) {
+      console.log(profile.mangaList);
       fillManga()
         .then((res) => {
           res.forEach((manga) => {
@@ -52,7 +70,7 @@ const MyMangaList = () => {
           );
         });
     }
-  }, [userMangaList]);
+  }, [profile.mangaList]);
 
   return (
     <StyledMyMangaList>
@@ -62,8 +80,27 @@ const MyMangaList = () => {
           title={manga.title}
           link={manga.link}
           drop={() => {
-            // dispatch(dropManga(manga._id));
-            console.log(manga._id);
+            removeManga(manga._id)
+              .then((res) => {
+                dispatch(
+                  addMessage({
+                    message: res,
+                    type: 'message',
+                  }),
+                );
+                dispatch(dropUserManga(manga._id));
+                dispatch(dropManga(manga._id));
+                // console.log(mangaList);
+              })
+              .catch((error) => {
+                const res = error.response;
+                dispatch(
+                  addMessage({
+                    message: 'Error: ' + res.data.message,
+                    type: 'error',
+                  }),
+                );
+              });
           }}
           img={manga.img}
         />

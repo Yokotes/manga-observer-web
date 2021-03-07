@@ -9,13 +9,13 @@ const StyledMyMangaListItem = styled.div`
   border-radius: 20px;
   height: 80px;
   padding: 15px 10px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   &:first-child {
-    margin-bottom: 0px;
+    margin-top: 0px;
   }
 
   & .manga-item {
@@ -55,6 +55,10 @@ const StyledMyMangaListItem = styled.div`
 
       &:hover {
         text-shadow: 0 0 3px ${viewVariables.mainColor};
+      }
+
+      &:focus {
+        outline: none;
       }
     }
   }

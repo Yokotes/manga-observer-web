@@ -11,6 +11,7 @@ import {
   Put,
   UseInterceptors,
   UploadedFile,
+  Delete,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -53,6 +54,20 @@ export class UserController {
         return { statusCode: 204, message: 'Manga list is empty' };
       }
     } else throw new UnauthorizedException();
+  }
+
+  @Delete(':userId/manga/:mangaId')
+  @UseGuards(AuthGuard('jwt'))
+  async removeMangaFromMangaList(
+    @Param('userId') _userId: string,
+    @Param('mangaId') _mangaId: string,
+    @Req() req: Request,
+  ) {
+    const reqUser = req.user as User;
+    if (_userId !== reqUser._id.toString()) throw new UnauthorizedException();
+
+    await this.userService.removeManga(_userId, _mangaId);
+    return 'Manga deleted from list';
   }
 
   @Post('')

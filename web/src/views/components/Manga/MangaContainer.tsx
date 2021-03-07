@@ -10,14 +10,16 @@ import { addMessage } from '../PopUp/PopUpSlice';
 
 const MangaContainer = () => {
   const mangaList = useSelector((state: RootState) => state.manga.manga);
-  const user = useSelector((state: RootState) => state.profile);
+  const userMangaList = useSelector(
+    (state: RootState) => state.profile.mangaList,
+  );
   const dispatch = useDispatch();
+  console.log('lol');
 
   const fillManga = async () => {
-    const manga = await axios.get('/api/v1/mangas');
-    const userMangaList = user.mangaList;
+    const mangaArray = await axios.post('/api/v1/mangas', userMangaList);
 
-    return manga.data.filter((manga) => userMangaList.includes(manga._id));
+    return mangaArray.data;
   };
 
   //
@@ -27,7 +29,8 @@ const MangaContainer = () => {
   //   manga id. If manga array is empty then throw an error
   //
   useEffect(() => {
-    if (user.mangaList) {
+    if (mangaList.length === 0 && userMangaList.length !== 0) {
+      console.log('kek', userMangaList);
       fillManga()
         .then((res) => {
           res.forEach((manga) => {
@@ -52,7 +55,7 @@ const MangaContainer = () => {
           );
         });
     }
-  }, [user.mangaList]);
+  }, [userMangaList]);
 
   return (
     <StyledMangaContainer>
