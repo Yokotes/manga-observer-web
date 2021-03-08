@@ -3,15 +3,13 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StyledMyMangaList } from './MyMangaList.styles';
 import axios from 'axios';
-import { addManga, dropManga } from '../../components/Manga/MangaSlice';
 import { addMessage } from '../../components/PopUp/PopUpSlice';
 import { useEffect } from 'react';
 import MyMangaListItem from './MyMangaListItem';
-import { dropUserManga } from '../ProfileLink/ProfileSlice';
+import { dropManga, addManga } from '../ProfileLink/ProfileSlice';
 
 const MyMangaList = () => {
   const profile = useSelector((state: RootState) => state.profile);
-  const mangaList = useSelector((state: RootState) => state.manga.manga);
   const dispatch = useDispatch();
 
   const removeManga = async (id: string) => {
@@ -29,23 +27,22 @@ const MyMangaList = () => {
   };
 
   //
-  // @Description: Fetch manga list by ids and write it to the state
+  // @Description: Fetch user's manga list from database
   //
   const fillManga = async () => {
-    const mangaArray = await axios.post('/api/v1/mangas', profile.mangaList);
+    const mangaArray = await axios.post(
+      '/api/v1/mangas',
+      profile.mangaToUpload,
+    );
 
     return mangaArray.data;
   };
 
   //
-  // @Change: After deleting item from user's manga list and global manga list
-  //  Item still exist in the state. Fix it.
-  //  Think about merging global manga list and user's manga list
+  // @Description: Write user's manga list to the state
   //
   useEffect(() => {
-    console.log(mangaList);
-    if (mangaList.length === 0 && profile.mangaList.length !== 0) {
-      console.log(profile.mangaList);
+    if (profile.mangaList.length === 0 && profile.mangaToUpload.length !== 0) {
       fillManga()
         .then((res) => {
           res.forEach((manga) => {
@@ -70,15 +67,16 @@ const MyMangaList = () => {
           );
         });
     }
-  }, [profile.mangaList]);
+  }, [profile.mangaToUpload]);
 
   return (
     <StyledMyMangaList>
-      {mangaList.map((manga) => (
+      {profile.mangaList.map((manga) => (
         <MyMangaListItem
           key={manga._id}
           title={manga.title}
           link={manga.link}
+          img={manga.img}
           drop={() => {
             removeManga(manga._id)
               .then((res) => {
@@ -88,9 +86,7 @@ const MyMangaList = () => {
                     type: 'message',
                   }),
                 );
-                dispatch(dropUserManga(manga._id));
                 dispatch(dropManga(manga._id));
-                // console.log(mangaList);
               })
               .catch((error) => {
                 const res = error.response;
@@ -102,7 +98,6 @@ const MyMangaList = () => {
                 );
               });
           }}
-          img={manga.img}
         />
       ))}
     </StyledMyMangaList>

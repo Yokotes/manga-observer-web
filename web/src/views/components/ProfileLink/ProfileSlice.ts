@@ -8,6 +8,7 @@ const ProfileSlice = createSlice({
     _id: '',
     img: '',
     mangaList: [],
+    mangaToUpload: [],
   },
   reducers: {
     setToken: (state, action) => {
@@ -24,11 +25,19 @@ const ProfileSlice = createSlice({
     setImg: (state, action) => {
       state.img = action.payload;
     },
-    setMangaList: (state, action) => {
-      state.mangaList = action.payload;
+    setMangaToUpload: (state, action) => {
+      state.mangaToUpload = action.payload;
     },
-    dropUserManga: (state, action) => {
-      state.mangaList = state.mangaList.filter((manga) => manga !== action);
+    addManga: (state, action) => {
+      state.mangaList.push(action.payload);
+      state.mangaToUpload = state.mangaToUpload.filter(
+        (id) => id !== action.payload._id,
+      );
+    },
+    dropManga: (state, action) => {
+      state.mangaList = state.mangaList.filter(
+        (manga) => manga._id !== action.payload,
+      );
     },
     signOut: (state) => {
       state.name = '';
@@ -50,8 +59,9 @@ export const {
   setName,
   setId,
   setImg,
-  setMangaList,
-  dropUserManga,
+  setMangaToUpload,
+  dropManga,
+  addManga,
   signOut,
 } = ProfileSlice.actions;
 

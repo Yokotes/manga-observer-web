@@ -14,7 +14,7 @@ import {
   setId,
   setImg,
   setName,
-  setMangaList,
+  setMangaToUpload,
   signOut,
 } from './ProfileSlice';
 
@@ -41,7 +41,7 @@ const ProfileLink = () => {
           dispatch(setName(res.data.name));
           dispatch(setId(res.data._id));
           dispatch(setImg(res.data.img));
-          dispatch(setMangaList(res.data.mangaList));
+          dispatch(setMangaToUpload(res.data.mangaList));
         })
         .catch((err) => {
           dispatch(

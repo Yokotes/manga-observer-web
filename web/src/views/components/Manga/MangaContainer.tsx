@@ -5,32 +5,31 @@ import { StyledMangaContainer } from './Manga.styles';
 import MangaItem from './MangaItem';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { addManga } from './MangaSlice';
 import { addMessage } from '../PopUp/PopUpSlice';
+import { addManga } from '../ProfileLink/ProfileSlice';
 
 const MangaContainer = () => {
-  const mangaList = useSelector((state: RootState) => state.manga.manga);
-  const userMangaList = useSelector(
-    (state: RootState) => state.profile.mangaList,
-  );
+  const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
-  console.log('lol');
 
+  //
+  // @Description: Send POST request with the user's manga list to the server.
+  //
   const fillManga = async () => {
-    const mangaArray = await axios.post('/api/v1/mangas', userMangaList);
+    const mangaArray = await axios.post(
+      '/api/v1/mangas',
+      profile.mangaToUpload,
+    );
 
     return mangaArray.data;
   };
 
   //
-  // @Description: Send GET request to the server.
-  //   After receiving response with manga array
-  //   write it to the state if current user manga list contains
-  //   manga id. If manga array is empty then throw an error
+  // @Description: After receiving response with manga array
+  //   write it to the state. If manga array is empty then throw an error
   //
   useEffect(() => {
-    if (mangaList.length === 0 && userMangaList.length !== 0) {
-      console.log('kek', userMangaList);
+    if (profile.mangaList.length === 0 && profile.mangaToUpload.length !== 0) {
       fillManga()
         .then((res) => {
           res.forEach((manga) => {
@@ -55,12 +54,12 @@ const MangaContainer = () => {
           );
         });
     }
-  }, [userMangaList]);
+  }, [profile.mangaToUpload]);
 
   return (
     <StyledMangaContainer>
-      {mangaList.length > 0 ? (
-        mangaList.map((manga) => (
+      {profile.mangaList.length > 0 ? (
+        profile.mangaList.map((manga) => (
           <MangaItem
             key={manga._id}
             title={manga.title}
