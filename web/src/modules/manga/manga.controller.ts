@@ -26,7 +26,7 @@ export class MangaController {
 
   @Post()
   async getManyByIds(@Body() _ids: string[]) {
-    const mangaArray = await this.mangaService.findMany(_ids);
+    const mangaArray = await this.mangaService.findManyById(_ids);
     return mangaArray;
   }
 
