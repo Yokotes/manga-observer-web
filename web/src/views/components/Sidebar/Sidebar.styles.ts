@@ -6,6 +6,7 @@ const StyledSidebar = styled.aside`
   height: 100vh;
   background-color: ${viewVariables.secondColor};
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   flex-direction: column;
 `;

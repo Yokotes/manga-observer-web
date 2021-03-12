@@ -14,7 +14,7 @@ const SearchSlice = createSlice({
     addItem: (state, action) => {
       state.mangaArray.push(action.payload);
     },
-    cleanMangaArray: (state) => {
+    clearMangaArray: (state) => {
       state.mangaArray = [];
     },
     setTimerId: (state, action) => {
@@ -27,7 +27,7 @@ const SearchSlice = createSlice({
 export const {
   setValue,
   addItem,
-  cleanMangaArray,
+  clearMangaArray,
   setTimerId,
 } = SearchSlice.actions;
 

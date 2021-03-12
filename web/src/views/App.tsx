@@ -8,6 +8,8 @@ import Sidebar from './components/Sidebar/Sidebar';
 import HomePage from './containers/HomePage/HomePage';
 import LogInModal from './modals/LogInModal/LogInModal';
 import SignUpModal from './modals/SignUpModal/SignUpModal';
+import CatalogPage from './containers/CatalogPage/CatalogPage';
+import MangaInfoPage from './containers/MangaInfoPage/MangaInfoPage';
 
 const App = () => (
   <StyledApp>
@@ -27,9 +29,14 @@ const App = () => (
         <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/manga">Manga</Route>
+        <Route path="/catalog">
+          <CatalogPage />
+        </Route>
         <Route path="/profile">
           <ProfilePage />
+        </Route>
+        <Route path="/manga">
+          <MangaInfoPage />
         </Route>
       </Switch>
 

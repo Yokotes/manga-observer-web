@@ -13,7 +13,7 @@ const MainNavSlice = createSlice({
       },
       {
         id: 1,
-        path: '/manga',
+        path: '/catalog',
         classes: 'far fa-list-alt',
         title: 'Manga',
         isCurrent: false,

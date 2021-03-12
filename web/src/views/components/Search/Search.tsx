@@ -7,6 +7,7 @@ import { setValue } from './SearchSlice';
 
 const Search = () => {
   const searchValue = useSelector((state: RootState) => state.search.value);
+  const searchTimer = useSelector((state: RootState) => state.search.timerId);
   const dispatch = useDispatch();
 
   return (
@@ -16,6 +17,9 @@ const Search = () => {
         onChange={(e) => dispatch(setValue(e.currentTarget.value))}
         placeholder="Find manga..."
       />
+      {searchTimer ? (
+        <img src="/loader.gif" alt="Loading..." className="search__preloader" />
+      ) : null}
       <SearchAutocomplete search={searchValue} />
     </StyledSearch>
   );

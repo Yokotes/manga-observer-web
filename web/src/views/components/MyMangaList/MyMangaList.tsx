@@ -53,6 +53,7 @@ const MyMangaList = () => {
                 link: manga.link,
                 img: manga.img,
                 latestChapter: manga.latestChapter,
+                isInMangaList: true,
               }),
             );
           });

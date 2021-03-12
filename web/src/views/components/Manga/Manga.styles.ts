@@ -23,7 +23,7 @@ const StyledMangaItem = styled.div`
       props.img ? props.img : '/no_img.png'}');
   background-repeat: no-repeat;
   background-size: cover;
-  height: 200px;
+  height: 250px;
   max-width: 350px;
   flex-grow: 1;
   flex-shrink: 1;
@@ -35,12 +35,17 @@ const StyledMangaItem = styled.div`
   align-items: flex-end;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
 
+  &:hover {
+    & .manga__panel {
+      bottom: 0;
+    }
+  }
+
   & .manga {
     &__content {
       z-index: 1;
-      // position: relative;
       padding: 0 10px;
-      padding-bottom: 20px;
+      padding-bottom: 70px;
     }
 
     &__title {
@@ -63,6 +68,18 @@ const StyledMangaItem = styled.div`
       padding: 10px;
       margin: 0;
     }
+
+    &__panel {
+      width: 100%;
+      height: 50px;
+      position: absolute;
+      bottom: -50;
+      left: 0;
+      display: flex;
+      background-color: ${viewVariables.secondColor};
+      z-index: 5;
+      transition: bottom 0.5s;
+    }
   }
 
   &::before {
@@ -79,4 +96,28 @@ const StyledMangaItem = styled.div`
   }
 `;
 
-export { StyledMangaContainer, StyledMangaItem };
+const StyledMangaPanelBtn = styled.button`
+  width: 50px;
+  background: none;
+  border: none;
+  border-right: 1px solid #ffffff44;
+  color: ${viewVariables.menuColor};
+  cursor: pointer;
+  opacity: 0.5;
+  transition: background 0.5s, opacity 0.5s;
+
+  &:hover {
+    background-color: ${viewVariables.mainColor};
+    opacity: 1;
+  }
+
+  &:first-child {
+    border-left: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export { StyledMangaContainer, StyledMangaItem, StyledMangaPanelBtn };

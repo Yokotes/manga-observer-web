@@ -22,6 +22,15 @@ const StyledSearch = styled.form`
       outline: none;
     }
   }
+
+  & > .search__preloader {
+    position: absolute;
+    margin: auto;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    height: 50%;
+  }
 `;
 
 const StyledAutocomplete = styled.div`

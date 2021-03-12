@@ -6,7 +6,7 @@ import { RootState } from 'src/views/store';
 import { addMessage } from '../PopUp/PopUpSlice';
 import AutocompleteItem from './AutocompleteItem';
 import { StyledAutocomplete } from './Search.styles';
-import { addItem, cleanMangaArray, setTimerId } from './SearchSlice';
+import { addItem, clearMangaArray, setTimerId } from './SearchSlice';
 
 type AutocompleteProps = {
   search: string;
@@ -51,8 +51,9 @@ const Autocomplete = ({ search }: AutocompleteProps) => {
           );
         });
     } else {
-      dispatch(cleanMangaArray());
+      dispatch(clearMangaArray());
     }
+    dispatch(setTimerId(null));
   };
 
   useEffect(() => {
