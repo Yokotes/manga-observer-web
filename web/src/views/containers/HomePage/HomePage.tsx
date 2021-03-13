@@ -49,7 +49,7 @@ const HomePage = () => {
   return (
     <MangaContainer
       fillManga={fillManga}
-      effectVar={profile.mangaToUpload}
+      effectVar={[profile.mangaToUpload]}
       mangaList={profile.mangaList}
     />
   );

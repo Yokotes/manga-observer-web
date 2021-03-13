@@ -55,7 +55,7 @@ const CatalogPage = () => {
   return (
     <MangaContainer
       fillManga={fillManga}
-      effectVar={profile.mangaToUpload}
+      effectVar={[profile.authToken]}
       mangaList={catalog.mangaList}
     />
   );

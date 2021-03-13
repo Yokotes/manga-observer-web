@@ -56,6 +56,22 @@ export class UserController {
     } else throw new UnauthorizedException();
   }
 
+  @Post(':id/manga')
+  @UseGuards(AuthGuard('jwt'))
+  async addToMangaList(
+    @Param('id') id: string,
+    @Req() req: Request,
+    @Body() mangaId: string[],
+  ) {
+    const user = await this.userService.findOneById(id);
+    const reqUser = req.user as User;
+
+    if (user && user._id.toString() === reqUser._id.toString()) {
+      await this.userService.addManga(id, mangaId[0]);
+      return (await this.userService.findOneById(id)).mangaList;
+    } else throw new UnauthorizedException();
+  }
+
   @Delete(':userId/manga/:mangaId')
   @UseGuards(AuthGuard('jwt'))
   async removeMangaFromMangaList(

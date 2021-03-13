@@ -29,7 +29,8 @@ export class MangaService {
   // @Description: Return manga array by ids array
   //
   async findManyById(_ids: string[]): Promise<Manga[]> {
-    const objectIds = _ids.map((_id) => Types.ObjectId(_id));
+    const filteredIds = _ids.filter((_id) => _id !== '');
+    const objectIds = filteredIds.map((_id) => Types.ObjectId(_id));
     const mangaArray = await this.mangaModel
       .find({
         _id: {

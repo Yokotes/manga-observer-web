@@ -14,6 +14,17 @@ const CatalogSlice = createSlice({
         (manga) => manga._id !== action.payload,
       );
     },
+    toggleIsInList: (state, action) => {
+      const selectedManga = state.mangaList.filter(function (manga) {
+        return manga._id === action.payload;
+      });
+
+      if (selectedManga.length > 0) {
+        const index = state.mangaList.indexOf(selectedManga);
+        selectedManga[0].isInMangaList = !selectedManga[0].isInMangaList;
+        state.mangaList[index] = selectedManga[0];
+      }
+    },
     clearCatalog: (state) => {
       state.mangaList = [];
     },
@@ -24,6 +35,7 @@ export const {
   addToCatalog,
   dropFromCatalog,
   clearCatalog,
+  toggleIsInList,
 } = CatalogSlice.actions;
 
 export default CatalogSlice.reducer;

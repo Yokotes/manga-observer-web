@@ -10,27 +10,35 @@ const MangaInfoPage = () => {
 
   return mangaInfo._id ? (
     <StyledMangaInfo>
-      <img src={mangaInfo.img} alt="Manga Image" className="manga-info__img" />
-      <div className="manga-info__content">
-        <h1 className="manga-info__title">{mangaInfo.title}</h1>
-        <div className="manga-info__btns">
-          {mangaInfo.isInMangaList ? (
-            'Manga already in your list'
-          ) : (
-            <PrimaryButton className="manga-info__add-btn">
-              Add to list
-            </PrimaryButton>
-          )}
-          <LinkButton
-            className="manga-info__link"
-            onClick={() => {
-              window.location.href = mangaInfo.link;
-            }}
-          >
-            Read manga
-          </LinkButton>
+      <div className="manga-info">
+        <img
+          src={mangaInfo.img}
+          alt="Manga Image"
+          className="manga-info__img"
+        />
+        <div className="manga-info__content">
+          <h1 className="manga-info__title">{mangaInfo.title}</h1>
+          <div className="manga-info__btns">
+            {mangaInfo.isInMangaList ? (
+              <PrimaryButton className="manga-info__remove-btn">
+                Remove form list
+              </PrimaryButton>
+            ) : (
+              <PrimaryButton className="manga-info__add-btn">
+                Add to list
+              </PrimaryButton>
+            )}
+            <LinkButton
+              className="manga-info__link"
+              onClick={() => {
+                window.location.href = mangaInfo.link;
+              }}
+            >
+              Read manga
+            </LinkButton>
+          </div>
+          <p className="manga-info__description">{mangaInfo.description}</p>
         </div>
-        <p className="manga-info__description">{mangaInfo.description}</p>
       </div>
     </StyledMangaInfo>
   ) : (

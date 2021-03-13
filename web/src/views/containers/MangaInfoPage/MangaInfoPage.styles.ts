@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 const StyledMangaInfo = styled.div`
   display: flex;
+  justify-content: center;
 
   & .manga-info {
+    display: flex;
+    max-width: 1400px;
+
     &__img {
       max-width: 300px;
       margin-right: 20px;
@@ -27,7 +31,7 @@ const StyledMangaInfo = styled.div`
     }
 
     &__link {
-      margin-left: 10px;
+      margin-left: 15px;
       font-size: 1.1rem;
     }
   }

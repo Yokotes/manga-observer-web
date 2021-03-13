@@ -12,7 +12,7 @@ const MyMangaList = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
 
-  const removeManga = async (id: string) => {
+  const removeFromList = async (id: string) => {
     await axios.delete(`/api/v1/mangas/${id}/users/${profile._id}`);
     const userRes = await axios.delete(
       `/api/v1/users/${profile._id}/manga/${id}`,
@@ -51,6 +51,7 @@ const MyMangaList = () => {
                 _id: manga._id,
                 title: manga.title,
                 link: manga.link,
+                description: manga.description,
                 img: manga.img,
                 latestChapter: manga.latestChapter,
                 isInMangaList: true,
@@ -79,7 +80,7 @@ const MyMangaList = () => {
           link={manga.link}
           img={manga.img}
           drop={() => {
-            removeManga(manga._id)
+            removeFromList(manga._id)
               .then((res) => {
                 dispatch(
                   addMessage({

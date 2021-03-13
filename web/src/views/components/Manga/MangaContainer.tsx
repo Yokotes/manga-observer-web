@@ -9,6 +9,9 @@ type MangaContainerProps = {
   mangaList: any[];
 };
 
+//
+// @Fix: After repeating 2 times delete/add throw 'Encountered...' error
+//
 const MangaContainer = ({
   fillManga,
   effectVar,
@@ -16,19 +19,20 @@ const MangaContainer = ({
 }: MangaContainerProps) => {
   useEffect(() => {
     if (fillManga !== null) fillManga();
-  }, [effectVar]);
+  }, effectVar);
 
   return (
     <StyledMangaContainer>
       {mangaList.length > 0 ? (
-        mangaList.map((manga) => {
+        mangaList.map((manga, index) => {
           let isInList = false;
+          console.log(index);
 
           if (manga.isInMangaList) isInList = true;
 
           return (
             <MangaItem
-              key={manga._id}
+              key={index}
               _id={manga._id}
               title={manga.title}
               link={manga.link}

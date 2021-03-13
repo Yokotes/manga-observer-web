@@ -2,8 +2,13 @@ import * as React from 'react';
 import { StyledMangaItem } from './Manga.styles';
 import { useHistory } from 'react-router-dom';
 import MangaPanelBtn from './MangaPanelBtn';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentMangaInfo } from '../../containers/MangaInfoPage/MangaInfoSlice';
+import { RootState } from '../../store';
+import {
+  addMangaToList,
+  removeFromList,
+} from '../../controllers/MangaController';
 
 type MangaItemProps = {
   _id: string;
@@ -29,6 +34,7 @@ const MangaItem = ({
   isInMangaList = false,
 }: MangaItemProps) => {
   const history = useHistory();
+  const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
 
   return (
@@ -41,14 +47,15 @@ const MangaItem = ({
       </div>
       <div className="manga__panel">
         <MangaPanelBtn
-          title={
+          title={isInMangaList ? 'Remove from list' : 'Add manga to your list'}
+          onClick={() =>
             isInMangaList
-              ? 'Manga already in your manga list'
-              : 'Add manga to your manga list'
+              ? removeFromList(_id, profile, dispatch)
+              : addMangaToList(_id, profile, dispatch)
           }
         >
           {isInMangaList ? (
-            <i className="fas fa-check"></i>
+            <i className="fas fa-times"></i>
           ) : (
             <i className="fas fa-plus"></i>
           )}
