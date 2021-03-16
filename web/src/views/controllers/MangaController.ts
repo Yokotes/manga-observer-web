@@ -5,6 +5,8 @@ import {
 } from '../components/ProfileLink/ProfileSlice';
 import { addMessage } from '../components/PopUp/PopUpSlice';
 import { toggleIsInList } from '../containers/CatalogPage/CatalogSlice';
+import { showErrorPopup, showMessagePopup } from './PopupController';
+import { Dispatch } from 'redux';
 
 //
 // @Description: Remove manga from user list
@@ -74,4 +76,8 @@ export const addMangaToList = (id: string, profile: any, dispatch: any) => {
         }),
       );
     });
+};
+
+export const testMangaFunc = (test: string) => (dispatch: Dispatch) => {
+  return dispatch(showMessagePopup(test));
 };
