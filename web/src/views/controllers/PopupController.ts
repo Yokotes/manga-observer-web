@@ -8,13 +8,13 @@ const showMessagePopup = (message: string) =>
 
 const showWarningPopup = (warningMessage: string) =>
   addMessage({
-    message: warningMessage,
+    message: 'Warning: ' + warningMessage,
     type: 'warning',
   });
 
 const showErrorPopup = (errorMessage: string) =>
   addMessage({
-    message: 'Error' + errorMessage,
+    message: 'Error: ' + errorMessage,
     type: 'error',
   });
 

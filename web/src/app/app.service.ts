@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { renderToStaticMarkup } from 'react-dom/server';
 import Layout from '../views/index';
 import { ServerStyleSheet } from 'styled-components';
-import store from '../views/store';
+import { store } from '../views/store';
 
 @Injectable()
 export class AppService {

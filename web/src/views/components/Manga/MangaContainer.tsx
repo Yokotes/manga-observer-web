@@ -26,7 +26,6 @@ const MangaContainer = ({
       {mangaList.length > 0 ? (
         mangaList.map((manga, index) => {
           let isInList = false;
-          console.log(index);
 
           if (manga.isInMangaList) isInList = true;
 

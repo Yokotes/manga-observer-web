@@ -2,16 +2,12 @@ import * as React from 'react';
 import { StyledMangaItem } from './Manga.styles';
 import { useHistory } from 'react-router-dom';
 import MangaPanelBtn from './MangaPanelBtn';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentMangaInfo } from '../../containers/MangaInfoPage/MangaInfoSlice';
-import { AppDispatch, RootState } from '../../store';
 import {
-  addMangaToList,
-  removeFromList,
-  testMangaFunc,
+  addMangaToUser,
+  removeMangaFromUser,
 } from '../../controllers/MangaController';
-import { Action, AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 
 type MangaItemProps = {
   _id: string;
@@ -37,11 +33,12 @@ const MangaItem = ({
   isInMangaList = false,
 }: MangaItemProps) => {
   const history = useHistory();
-  const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
 
-  const handleAddClick = () => {
-    dispatch(testMangaFunc('lol'));
+  const handleAddRemoveClick = () => {
+    isInMangaList
+      ? dispatch(removeMangaFromUser(_id))
+      : dispatch(addMangaToUser(_id));
   };
 
   return (
@@ -55,12 +52,7 @@ const MangaItem = ({
       <div className="manga__panel">
         <MangaPanelBtn
           title={isInMangaList ? 'Remove from list' : 'Add manga to your list'}
-          onClick={handleAddClick}
-          // onClick={() =>
-          //   isInMangaList
-          //     ? removeFromList(_id, profile, dispatch)
-          //     : addMangaToList(_id, profile, dispatch)
-          // }
+          onClick={handleAddRemoveClick}
         >
           {isInMangaList ? (
             <i className="fas fa-times"></i>

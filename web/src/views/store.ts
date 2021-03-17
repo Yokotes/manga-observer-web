@@ -11,8 +11,7 @@ import CatalogSlice from './containers/CatalogPage/CatalogSlice';
 import MangaInfoSlice from './containers/MangaInfoPage/MangaInfoSlice';
 import ProfileFormSlice from './containers/ProfilePage/ProfileFormSlice';
 import ModalsReducers from './modals/ModalsReducers';
-import thunkMiddleware from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 export const rootReducers = combineReducers({
   mainNav: MainNavSlice,
@@ -25,11 +24,6 @@ export const rootReducers = combineReducers({
   mangaInfo: MangaInfoSlice,
 });
 
-const store = createStore(
-  rootReducers,
-  composeWithDevTools(applyMiddleware(thunkMiddleware)),
-);
+export const store = createStore(rootReducers, applyMiddleware(thunk));
 
-export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof rootReducers>;
-export default store;
