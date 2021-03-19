@@ -7,23 +7,15 @@ import { addMessage } from '../../components/PopUp/PopUpSlice';
 import { useEffect } from 'react';
 import MyMangaListItem from './MyMangaListItem';
 import { dropManga, addManga } from '../ProfileLink/ProfileSlice';
+import { showErrorPopup } from '../../controllers/PopupController';
+import { removeMangaFromUser } from '../../controllers/MangaController';
 
 const MyMangaList = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
 
-  const removeFromList = async (id: string) => {
-    await axios.delete(`/api/v1/mangas/${id}/users/${profile._id}`);
-    const userRes = await axios.delete(
-      `/api/v1/users/${profile._id}/manga/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${profile.authToken}`,
-        },
-      },
-    );
-
-    return userRes.data;
+  const handleClick = (id: string) => {
+    dispatch(removeMangaFromUser(id));
   };
 
   //
@@ -46,27 +38,22 @@ const MyMangaList = () => {
       fillManga()
         .then((res) => {
           res.forEach((manga) => {
-            dispatch(
-              addManga({
-                _id: manga._id,
-                title: manga.title,
-                link: manga.link,
-                description: manga.description,
-                img: manga.img,
-                latestChapter: manga.latestChapter,
-                isInMangaList: true,
-              }),
-            );
+            const mangaData = {
+              _id: manga._id,
+              title: manga.title,
+              link: manga.link,
+              description: manga.description,
+              img: manga.img,
+              latestChapter: manga.latestChapter,
+              isInMangaList: true,
+            };
+
+            dispatch(addManga(mangaData));
           });
         })
         .catch((error) => {
           const res = error.response;
-          dispatch(
-            addMessage({
-              message: 'Error: ' + res.data.message,
-              type: 'error',
-            }),
-          );
+          dispatch(showErrorPopup(res.data.message));
         });
     }
   }, [profile.mangaToUpload]);
@@ -79,27 +66,7 @@ const MyMangaList = () => {
           title={manga.title}
           link={manga.link}
           img={manga.img}
-          drop={() => {
-            removeFromList(manga._id)
-              .then((res) => {
-                dispatch(
-                  addMessage({
-                    message: res,
-                    type: 'message',
-                  }),
-                );
-                dispatch(dropManga(manga._id));
-              })
-              .catch((error) => {
-                const res = error.response;
-                dispatch(
-                  addMessage({
-                    message: 'Error: ' + res.data.message,
-                    type: 'error',
-                  }),
-                );
-              });
-          }}
+          drop={() => handleClick(manga._id)}
         />
       ))}
     </StyledMyMangaList>

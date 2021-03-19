@@ -3,8 +3,8 @@ import { RootState } from '../../store';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MangaContainer from '../../components/Manga/MangaContainer';
-import { addMessage } from '../../components/PopUp/PopUpSlice';
 import { addToCatalog } from './CatalogSlice';
+import { showErrorPopup } from '../../controllers/PopupController';
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
@@ -28,27 +28,22 @@ const CatalogPage = () => {
             : profile.mangaToUpload;
 
         res.data.forEach((manga) => {
-          dispatch(
-            addToCatalog({
-              _id: manga._id,
-              title: manga.title,
-              link: manga.link,
-              img: manga.img,
-              description: manga.description,
-              latestChapter: manga.latestChapter,
-              isInMangaList: testMangaArray.includes(manga._id) ? true : false,
-            }),
-          );
+          const mangaData = {
+            _id: manga._id,
+            title: manga.title,
+            link: manga.link,
+            img: manga.img,
+            description: manga.description,
+            latestChapter: manga.latestChapter,
+            isInMangaList: testMangaArray.includes(manga._id) ? true : false,
+          };
+
+          dispatch(addToCatalog(mangaData));
         });
       })
       .catch((error) => {
         const res = error.response;
-        dispatch(
-          addMessage({
-            message: 'Error: ' + res.data.message,
-            type: 'error',
-          }),
-        );
+        dispatch(showErrorPopup(res.data.message));
       });
   };
 

@@ -2,19 +2,29 @@ import axios from 'axios';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from 'src/views/store';
-import { addMessage } from '../PopUp/PopUpSlice';
+import { showErrorPopup } from '../../controllers/PopupController';
+import { RootState } from '../../store';
 import AutocompleteItem from './AutocompleteItem';
 import { StyledAutocomplete } from './Search.styles';
-import { addItem, clearMangaArray, setTimerId } from './SearchSlice';
+import { addItem, clearMangaArray, setTimerId, setValue } from './SearchSlice';
+import { setCurrentMangaInfo } from '../../containers/MangaInfoPage/MangaInfoSlice';
+import { useHistory } from 'react-router-dom';
 
 type AutocompleteProps = {
   search: string;
 };
 
 const Autocomplete = ({ search }: AutocompleteProps) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const mangaList = useSelector((state: RootState) => state.search.mangaArray);
+
+  const handleClick = (manga) => {
+    dispatch(setCurrentMangaInfo(manga));
+    dispatch(clearMangaArray());
+    dispatch(setValue(''));
+    history.push('/manga');
+  };
 
   //
   // @Description: Fetch manga array from the server.
@@ -32,7 +42,11 @@ const Autocomplete = ({ search }: AutocompleteProps) => {
             const mangaObj = {
               _id: manga._id,
               title: manga.title,
+              link: manga.link,
               img: manga.img,
+              description: manga.description,
+              latestChapter: manga.latestChapter,
+              isInMangaList: manga.isInMangaList,
             };
             const filter = mangaList.filter(
               (manga) => manga._id == mangaObj._id,
@@ -43,12 +57,7 @@ const Autocomplete = ({ search }: AutocompleteProps) => {
           });
         })
         .catch((err) => {
-          dispatch(
-            addMessage({
-              message: 'Error: ' + err.request.message,
-              type: 'error',
-            }),
-          );
+          dispatch(showErrorPopup(err.request.message));
         });
     } else {
       dispatch(clearMangaArray());
@@ -69,6 +78,7 @@ const Autocomplete = ({ search }: AutocompleteProps) => {
               key={manga._id}
               title={manga.title}
               img={manga.img}
+              onClick={() => handleClick(manga)}
             />
           ))
         : 'No manga found'}

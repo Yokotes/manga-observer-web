@@ -3,8 +3,8 @@ import { RootState } from '../../store';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MangaContainer from '../../components/Manga/MangaContainer';
-import { addMessage } from '../../components/PopUp/PopUpSlice';
 import { addManga } from '../../components/ProfileLink/ProfileSlice';
+import { showErrorPopup } from '../../controllers/PopupController';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -21,27 +21,22 @@ const HomePage = () => {
         .post('/api/v1/mangas', profile.mangaToUpload)
         .then((res) => {
           res.data.forEach((manga) => {
-            dispatch(
-              addManga({
-                _id: manga._id,
-                title: manga.title,
-                link: manga.link,
-                img: manga.img,
-                description: manga.description,
-                latestChapter: manga.latestChapter,
-                isInMangaList: true,
-              }),
-            );
+            const mangaData = {
+              _id: manga._id,
+              title: manga.title,
+              link: manga.link,
+              img: manga.img,
+              description: manga.description,
+              latestChapter: manga.latestChapter,
+              isInMangaList: true,
+            };
+
+            dispatch(addManga(mangaData));
           });
         })
         .catch((error) => {
           const res = error.response;
-          dispatch(
-            addMessage({
-              message: 'Error: ' + res.data.message,
-              type: 'error',
-            }),
-          );
+          dispatch(showErrorPopup(res.data.message));
         });
     }
   };

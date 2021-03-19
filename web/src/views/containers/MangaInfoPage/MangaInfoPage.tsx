@@ -1,12 +1,26 @@
 import { RootState } from '../../store';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledMangaInfo } from './MangaInfoPage.styles';
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
 import LinkButton from '../../components/LinkButton/LinkButton';
+import {
+  addMangaToUser,
+  removeMangaFromUser,
+} from '../../controllers/MangaController';
+import { useHistory } from 'react-router';
 
 const MangaInfoPage = () => {
   const mangaInfo = useSelector((state: RootState) => state.mangaInfo.info);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleClick = () => {
+    mangaInfo.isInMangaList
+      ? dispatch(removeMangaFromUser(mangaInfo._id))
+      : dispatch(addMangaToUser(mangaInfo._id));
+    history.push('/');
+  };
 
   return mangaInfo._id ? (
     <StyledMangaInfo>
@@ -19,15 +33,12 @@ const MangaInfoPage = () => {
         <div className="manga-info__content">
           <h1 className="manga-info__title">{mangaInfo.title}</h1>
           <div className="manga-info__btns">
-            {mangaInfo.isInMangaList ? (
-              <PrimaryButton className="manga-info__remove-btn">
-                Remove form list
-              </PrimaryButton>
-            ) : (
-              <PrimaryButton className="manga-info__add-btn">
-                Add to list
-              </PrimaryButton>
-            )}
+            <PrimaryButton
+              className="manga-info__add-btn"
+              onClick={handleClick}
+            >
+              {mangaInfo.isInMangaList ? 'Delete' : 'Add'}
+            </PrimaryButton>
             <LinkButton
               className="manga-info__link"
               onClick={() => {
@@ -42,7 +53,7 @@ const MangaInfoPage = () => {
       </div>
     </StyledMangaInfo>
   ) : (
-    <>Oops... Something went wrong</>
+    <>Ooops... Something went wrong</>
   );
 };
 

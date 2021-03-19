@@ -1,6 +1,8 @@
 # compiled output
 web/dist
 web/node_modules
+observer/node_modules
+observer/dist
 /diagrams
 
 # Docker files

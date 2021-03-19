@@ -41,6 +41,21 @@ const MangaItem = ({
       : dispatch(addMangaToUser(_id));
   };
 
+  const handleInfoClick = () => {
+    const mangaData = {
+      _id: _id,
+      title: title,
+      link: link,
+      img: img,
+      description: description,
+      latestChapter: latestChapter,
+      isInMangaList: isInMangaList,
+    };
+
+    dispatch(setCurrentMangaInfo(mangaData));
+    history.push('/manga');
+  };
+
   return (
     <StyledMangaItem img={img}>
       <div className="manga__content">
@@ -62,21 +77,7 @@ const MangaItem = ({
         </MangaPanelBtn>
         <MangaPanelBtn
           title="Show manga info"
-          onClick={() => {
-            dispatch(
-              setCurrentMangaInfo({
-                _id: _id,
-                title: title,
-                link: link,
-                img: img,
-                description: description,
-                latestChapter: latestChapter,
-                isInMangaList: isInMangaList,
-              }),
-            );
-
-            history.push('/manga');
-          }}
+          onClick={() => handleInfoClick()}
         >
           <i className="fas fa-info"></i>
         </MangaPanelBtn>
