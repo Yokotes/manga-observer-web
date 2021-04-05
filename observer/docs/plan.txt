@@ -1,0 +1,11 @@
+Observer component:
+    Business-logic:
+    - Parse the data (title, img link, description, last chapter) from external sites
+    - Rewrite data in the database
+    - Watch updates for some interval
+    - After update data send some signal to the backend server
+
+    Details:
+    - Database: MongoDB
+    - PL: Typescript
+    - How to send signals to backend server: WebSockets
